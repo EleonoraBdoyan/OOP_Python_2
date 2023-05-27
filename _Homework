@@ -194,6 +194,68 @@ class Vector:
 
     def __contains__(self, item):
         raise TypeError("Vectors do not support membership testing.")
+        
+        
+    # Իրականացնել հրատարակչական ընկերություն (publishing company), որը շուկա է հանում իր
+# արտադրանքը և' գրքերի, և' ձայներիզների տեսքով։ Ստեղծել publication կլասը, որը պետք է պահպանի
+# հրապարակման վերնագիրը(title: string) և գինը(price: int)։ Այս կլասից պետք է ժառանգել երկու կլաս՝ Book,
+# որն ավելացնում է էջերի քանակը(count_of_pages: int) և Tape, որն ավելացնում է ձայներիզի կատարման ժամանակը
+# ներկայացված րոպեներով(playing_time: int)։ Յուրաքանչյուր կլաս պետք է ունենա setData() մեթոդ, որը
+# համաապատսխանաբար կմուտքագրի տվյալներ և getData(), որը կպատկերի այդ տվյալները։ Գրել main ծրագիր, որտեղ
+# կստեղծվեն գրքի և
+# ժապավենի էկզեմպլյարներ և կկիրառվեն համապատասխան ֆունկցիոնալությունները (օգտագործելով պոլիմորֆիզմ)։ Կազմել
+# UML դիագրաման։
+
+class Publication:
+    def __init__(self):
+        self.title: string = ""
+        self.price: int = 0
+
+    def setData(self):
+        self.title = input(f"Enter {self.__class__.__name__}'s title: ")
+        self.price = int(input(f"Enter {self.__class__.__name__}'s price: "))
+
+    def getData(self):
+        print(f"The title of {self.__class__.__name__} is <<{self.title}>>.")
+        print(f"The price of {self.__class__.__name__}  is {self.price}.")
+
+
+class Book(Publication):
+    def __init__(self):
+        super().__init__()
+        self.count_of_pages: int = 0
+
+    def setData(self):
+        super().setData()
+        self.count_of_pages = input(f"Enter {self.__class__.__name__}'s count of pages: ")
+
+    def getData(self):
+        super().getData()
+        print(f"Count of pages of {self.__class__.__name__} is {self.count_of_pages}.")
+
+
+class Tape(Publication):
+    def __init__(self):
+        super().__init__()
+        self.playing_time: int = 0
+
+    def setData(self):
+        super().setData()
+        self.playing_time = int(input(f"Enter {self.__class__.__name__}'s playing time: "))
+
+    def getData(self):
+        super().getData()
+        print(f"Playing time of {self.__class__.__name__} is {self.playing_time}.")
+
+def main():
+    publications = [Book(), Tape()]
+    for i in publications:
+        i.setData()
+        i.getData()
+
+main()
+
+
 
 
 
